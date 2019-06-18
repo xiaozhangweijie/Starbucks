@@ -1,52 +1,44 @@
 <template>
-    <div class="alert" v-show="open">
-        {{text}}
-    </div>
+    <div class="box" v-show="open">{{txt}}</div>
 </template>
+
 <script>
 export default {
-    props:["text"],
-    components:{
-
-    },
-    data(){
+    data() {
         return {
-  open:true,
-  timer:null
+            txt:"",
+            open:false,
+            timer:null
         }
     },
-    computed:{
-
+    methods: {
+        alertO(txt){
+            this.txt=txt;
+            this.open=true;
+            this.timer=setTimeout(()=>{
+                this.open=false
+            },2000)
+        }
     },
-    methods:{
-
+    destroyed() {
+        clearTimeout(this.timer)
     },
-    created(){
-
-    },
-    mounted(){
-this.timer=setInterval(()=>{
-    this.open=false;
-},2000)
-    },destroyed(){
-        clearInterval(this.timer);
-    }
 }
 </script>
-<style scoped lang="scss">
+
+<style lang="scss" scoped>
 @import "../../static/_minix.scss";
 @import "../../static/common.scss";
-.alert{
-width:50%;
-height:pxTorem(100px);
-position:absolute;
-top:50%;
-left:20%;
-background:#000;
-opacity: .5;
-z-index:99999;
-color:#fff;
-line-height:pxTorem(100px);
-text-align: center;
+// @import "../static/scss/common";
+.box{
+    padding: pxTorem(20px);
+    font-size: pxTorem(14px);
+    color: #eee;
+    background: rgba(0,0,0,.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 10;
 }
 </style>

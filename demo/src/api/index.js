@@ -10,6 +10,7 @@ const api={
     vacationDetail:(data)=>request.get("/api/apply/vacation",data),
     append:(data)=>request.post("/api/upload",data),
     submitovertime:(data)=>request.post("/api/apply/overtime",data),
-    submitvacation:(data)=>request.post("/api/apply/vacation",data)
+    submitvacation:(data)=>request.post("/api/apply/vacation",data),
+    history:(data)=>request.get("/api/task/history",data)
     }
 export default api;

@@ -7,8 +7,9 @@ import "./until/flexble";
 import "./fonts/iconfont.css";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
-import "@/until/e-alert";
+import Alert from "./until/Alert.js";
 Vue.use(ElementUI);
+Vue.use(Alert);
 import store from "./store.js";
 Vue.config.productionTip = false
 

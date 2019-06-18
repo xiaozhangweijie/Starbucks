@@ -106,21 +106,20 @@
         </div>
 </div>
 <footer>
+    <span @click="his">历史审核</span>
     <span>取消全部选择</span>
     <span @click="sure">确认</span>
 </footer>
-<el-alert text="报错信息"></el-alert>
     </div>
 </template>
 <script>
 import request from "@/request.js";
 import api from "../api/index";
-import elAlert from "../components/el-alert";
 export default {
     props:{
     },
     components:{
-elAlert
+
     },
     data(){
         return {
@@ -175,7 +174,7 @@ elAlert
            let b=new Date(this.end)*1;
            let cha=b-a;
            if(b-a<0){
-               return alert("选择错误");
+               return this.$alert("选择错误");
            }else{
                this.num=b-a;
            }
@@ -191,7 +190,7 @@ if(this.imgType.size*1024*1024<size){
     error=`请上传小于${this.imgType.size}的文件`
 };
 if(error){
-    alert(error);
+    this.$alert(error);
     return 
 }
 const fromdata=new FormData();
@@ -211,9 +210,13 @@ api.append(fromdata).then((res)=>{
              if(res.msg==="提交成功"){
                 this.$router.back();
              }else{
-                 alert(res.msg);
+                 this.$alert(res.msg);
              }
          })
+        },his(){
+           api.history("3gvn7916rwg0").then((res)=>{
+               console.log(res);
+           })
         }
     },
     created(){
@@ -376,6 +379,9 @@ footer{
         color:rgb(3, 94, 3);
     }
      span:nth-child(2){
+        color:rgb(3, 94, 3);
+    }
+     span:nth-child(3){
         background:rgb(3, 94, 3);
         color:#fff;
     }
